@@ -1,3 +1,53 @@
-<script async src="https://cse.google.com/cse.js?cx=779186e4c52814644">
-</script>
-<div class="gcse-search"></div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador FAQ</title>
+    <style>
+        /* Estilo para resaltar las coincidencias */
+        .highlight {
+            background-color: yellow;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        // Función para buscar y resaltar el término
+        function highlightSearch() {
+            // Obtener el término buscado
+            var searchTerm = document.getElementById("searchTerm").value.toLowerCase();
+            
+            // Obtener todo el contenido de la página
+            var content = document.getElementById("content").innerHTML;
+            
+            // Remover el resaltado anterior
+            var cleanContent = content.replace(/<span class="highlight">(.*?)<\/span>/g, "$1");
+            
+            // Resaltar las nuevas coincidencias
+            var highlightedContent = cleanContent.replace(new RegExp(searchTerm, "gi"), function(match) {
+                return '<span class="highlight">' + match + '</span>';
+            });
+            
+            // Reemplazar el contenido original con el resaltado
+            document.getElementById("content").innerHTML = highlightedContent;
+        }
+    </script>
+</head>
+<body>
+    <h1>Buscador en la página FAQ</h1>
+    
+    <!-- Campo de búsqueda -->
+    <input type="text" id="searchTerm" placeholder="Buscar..." />
+    <button onclick="highlightSearch()">Buscar</button>
+    
+    <!-- Contenido de la página -->
+    <div id="content">
+        <!-- Aquí va el contenido que se quiere buscar -->
+        <h2>Preguntas Frecuentes (FAQ)</h2>
+        <p>Bienvenido a la página de preguntas frecuentes de Dotia Gestores. Aquí puedes encontrar información sobre los servicios ofrecidos, cómo contactarnos y nuestras políticas.</p>
+        <p>Para más detalles sobre los servicios, puedes visitar la sección de <a href="#">contacto</a>.</p>
+        <p>¿Cómo puedo registrarme? Simplemente sigue los pasos indicados en la página de inicio.</p>
+        <p>Ofrecemos soporte las 24 horas del día para todas las consultas relacionadas con nuestros productos.</p>
+    </div>
+</body>
+</html>
